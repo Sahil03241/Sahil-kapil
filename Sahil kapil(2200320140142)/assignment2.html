@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chocolate Cart</title>
+  <style>
+    body {
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #7ed7fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #container {
+      width: 40%;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h2 {
+      color: #ff6600;
+    }
+
+    .chocolate-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .chocolate-item label {
+      font-size: 1.2rem;
+      color: #333;
+      margin-right: 20px;
+    }
+
+    .quantity-input {
+      width: 40px;
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    button {
+      padding: 15px 30px;
+      cursor: pointer;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #ff4500;
+    }
+
+    #total-price {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <h2>Build Your Own Chocolate Pack</h2>
+
+  <div class="chocolate-item">
+    <label for="milkQuantity">Milky bar</label>
+    <input type="number" id="milkQuantity" class="quantity-input" min="0" max="8" value="0">
+  </div>
+
+  <div class="chocolate-item">
+    <label for="darkQuantity">Dairy Milk</label>
+    <input type="number" id="darkQuantity" class="quantity-input" min="0" max="8" value="0">
+  </div>
+
+  <div class="chocolate-item">
+    <label for="whiteQuantity">Dark Chocolate</label>
+    <input type="number" id="whiteQuantity" class="quantity-input" min="0" max="8" value="0">
+  </div>
+
+  <button onclick="calculateTotal()">Calculate Total</button>
+
+  <div id="total-price"></div>
+</div>
+
+<script>
+    function calculateTotal() {
+      const MilkybarQuantity = parseInt(document.getElementById('milkQuantity').value);
+      const DairyMilkQuantity = parseInt(document.getElementById('darkQuantity').value);
+      const DarkChocolateQuantity = parseInt(document.getElementById('whiteQuantity').value);
+  
+      const totalItems = MilkybarQuantity + DairyMilkQuantity + DarkChocolateQuantity;
+  
+      if (totalItems > 8) {
+        alert('Total items cannot exceed 8.');
+        return;
+      }
+  
+      const MilkybarPrice = 20.0;
+      const DairyMilkPrice = 10.0;
+      const DarkChocolatePrice = 100.0;
+  
+      const totalPrice = (MilkybarQuantity * MilkybarPrice) + (DairyMilkQuantity * DairyMilkPrice) + (DarkChocolateQuantity * DarkChocolatePrice);
+      const total = totalPrice;
+  
+      document.getElementById('total-price').innerText = `Total Price: ₹${total.toFixed(2)}`;
+    }
+  </script>
+  
+</body>
+</html>
